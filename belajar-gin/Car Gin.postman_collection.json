@@ -1,0 +1,64 @@
+{
+	"info": {
+		"_postman_id": "878ff318-a2d0-4968-8ea7-656bc178ee37",
+		"name": "Car Gin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "17647214"
+	},
+	"item": [
+		{
+			"name": "Create Data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"brand\": \"BMW\",\r\n    \"price\": 250000000,\r\n    \"model\": \"M1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/cars"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Data",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"brand\": \"Fortuner\",\r\n    \"price\": 493000000,\r\n    \"model\": \"GR Sport\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/cars/c1"
+			},
+			"response": []
+		},
+		{
+			"name": "GET Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/cars/c1"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Data",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/cars/c1"
+			},
+			"response": []
+		}
+	]
+}
