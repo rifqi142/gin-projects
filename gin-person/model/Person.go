@@ -1,8 +1,7 @@
 package model
 
-var Persons []Person = make([]Person, 0)
-
 type Person struct {
-	Name string `json:"name"`
-	Age  int    `json:"age"`
+	Id      int    `json:"id"`
+	Name    string `json:"name,omitempty"`
+	Address string `json:"address,omitempty"`
 }

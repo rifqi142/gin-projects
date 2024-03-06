@@ -1,31 +1,30 @@
 package main
 
 import (
+	"gin-person/controller"
+	"gin-person/lib"
+	"gin-person/repository"
+
 	"github.com/gin-gonic/gin"
-
-	"gin-project/controller"
 )
-
-
-
 
 func main() {
 
-	personController := controller.NewPersonController()
-	ginEngine := gin.Default()
-
-	ginEngine.GET("/", rootHandler)
-	ginEngine.GET("/person", personController.GetAll)
-	ginEngine.POST("/person", personController.Create)
-
-	err := ginEngine.Run("localhost:8082")
-
+	db, err := lib.InitializeDatabase()
 	if err != nil {
 		panic(err)
 	}
-}
 
+	personRepository := repository.NewPersonRepository(db)
+	personController := controller.NewPersonController(personRepository)
 
-func rootHandler(ctx *gin.Context) {
-	ctx.Writer.Write([]byte("Hello World"))
+	ginEngine := gin.Default()
+
+	ginEngine.GET("/person", personController.GetAll)
+	ginEngine.POST("/person", personController.Create)
+
+	err = ginEngine.Run("localhost:8082")
+	if err != nil {
+		panic(err)
+	}
 }
