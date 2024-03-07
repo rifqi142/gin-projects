@@ -22,6 +22,8 @@ func main() {
 
 	ginEngine.GET("/person", personController.GetAll)
 	ginEngine.POST("/person", personController.Create)
+	ginEngine.PUT("/person/:id", personController.Update)
+	ginEngine.DELETE("/person/:id", personController.Delete)
 
 	err = ginEngine.Run("localhost:8082")
 	if err != nil {

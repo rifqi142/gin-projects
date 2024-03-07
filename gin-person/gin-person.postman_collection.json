@@ -1,0 +1,63 @@
+{
+	"info": {
+		"_postman_id": "06a2815f-8c53-4f09-b274-91bd13ebf391",
+		"name": "gin-person",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "17647214"
+	},
+	"item": [
+		{
+			"name": "[GET] Data Person",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8082/person"
+			},
+			"response": []
+		},
+		{
+			"name": "[POST] New Person",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Rifqi\",\r\n    \"address\": \"jakarta barat\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8082/person"
+			},
+			"response": []
+		},
+		{
+			"name": "[UPDATE] Update Person",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Shanum\",\r\n    \"address\": \"Bekasi\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8082/person"
+			},
+			"response": []
+		},
+		{
+			"name": "[DELETE] Delete Person",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

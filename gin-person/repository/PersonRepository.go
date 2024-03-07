@@ -16,6 +16,7 @@ func NewPersonRepository(db *sql.DB) *personRepository {
 	}
 }
 
+// create new data person
 func (pr *personRepository) Create(newPerson model.Person) (model.Person, error) {
 	query := "insert into person(name, address) values($1, $2) returning *"
 
@@ -24,6 +25,7 @@ func (pr *personRepository) Create(newPerson model.Person) (model.Person, error)
 	return newPerson, err
 }
 
+// get all data person
 func (pr *personRepository) GetAll() ([]model.Person, error) {
 	var persons = []model.Person{}
 
@@ -45,4 +47,28 @@ func (pr *personRepository) GetAll() ([]model.Person, error) {
 	}
 
 	return persons, nil
+}
+
+// update data person
+func (pr *personRepository) Update(person model.Person) (model.Person, error) {
+	query := "update person set name=$2, address=$3 where id=$1 returning *"
+
+	row := pr.db.QueryRow(query, person.Id, person.Name, person.Address)
+	var updatedPerson model.Person
+	err := row.Scan(&updatedPerson.Id, &updatedPerson.Name, &updatedPerson.Address)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return model.Person{}, fmt.Errorf("person with ID %d not found", person.Id)
+		}
+		return model.Person{}, err
+	}
+	return updatedPerson, nil
+}
+
+// delete data person
+func (pr *personRepository) Delete(id int) error {
+	query := "delete from person where id=$1"
+
+	_, err := pr.db.Exec(query, id)
+	return err
 }
